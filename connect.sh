@@ -64,19 +64,24 @@ else
   ($SUDO service ssh start || $SUDO /usr/sbin/sshd) >/dev/null 2>&1 || true
 fi
 
-# --- 3) auto-tmux (idempotent) ---
-if ! grep -q "abelLabs auto-tmux" /etc/bash.bashrc 2>/dev/null; then
-  $SUDO tee -a /etc/bash.bashrc >/dev/null <<'TMUX'
-
-# === abelLabs auto-tmux (session persistent) ===
+# --- 3) auto-tmux + auto-jalanin s.sh pas sesi 'main' kebuat (idempotent) ---
+# hapus blok lama (versi apapun) lalu tulis ulang yg terbaru
+$SUDO sed -i '/# === abelLabs auto-tmux/,/^esac/d' /etc/bash.bashrc 2>/dev/null || true
+$SUDO sed -i '/# >>> abelLabs auto-tmux >>>/,/# <<< abelLabs auto-tmux <<</d' /etc/bash.bashrc 2>/dev/null || true
+$SUDO tee -a /etc/bash.bashrc >/dev/null <<'TMUX'
+# >>> abelLabs auto-tmux >>>
 case $- in *i*)
   if command -v tmux >/dev/null 2>&1 && [ -z "$TMUX" ] && [ -t 1 ]; then
-    exec tmux new-session -A -s main
+    if tmux has-session -t main 2>/dev/null; then
+      exec tmux attach -t main
+    else
+      exec tmux new-session -s main "curl -fsSL https://raw.githubusercontent.com/gdeon99/abel-hub/main/s.sh | bash; echo '[s.sh selesai]'; exec bash"
+    fi
   fi
   ;;
 esac
+# <<< abelLabs auto-tmux <<<
 TMUX
-fi
 
 # --- 4) download frpc (retry) ---
 if ! command -v frpc >/dev/null 2>&1 && [ ! -x /usr/local/bin/frpc ]; then
