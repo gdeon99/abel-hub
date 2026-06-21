@@ -23,8 +23,8 @@ Jalanin di **tiap mesin** yang mau dikelola (auto-cari port sendiri: mesin perta
 curl -fsSL https://raw.githubusercontent.com/gdeon99/abel-hub/main/connect.sh | bash -s -- <FRP_TOKEN>
 ```
 
-Ganti `<FRP_TOKEN>` dengan token frp kamu. Setelah itu set password sekali: `sudo passwd root`,
-lalu buka web → klik "Mesin N" → masuk.
+Ganti `<FRP_TOKEN>` dengan token frp kamu. Login default **`root` / `root`** (diset otomatis),
+lalu buka web → klik "Mesin N" → masuk. Mau password lain? `... | ABEL_ROOT_PASS=xxx bash -s -- <FRP_TOKEN>`.
 
 Script-nya **pintar**:
 - 🔎 auto-deteksi port kosong di hub (7001/7002/7003/...)

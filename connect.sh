@@ -21,6 +21,7 @@ FRP_VER="0.69.1"
 PORT_MIN=7001
 PORT_MAX=7010
 SSHPORT="${SSH_LOCAL_PORT:-22}"
+ROOTPASS="${ABEL_ROOT_PASS:-root}"   # default login: root / root (override via env ABEL_ROOT_PASS)
 
 C=$'\033[1;36m'; Y=$'\033[1;33m'; G=$'\033[1;32m'; N=$'\033[0m'
 log(){  echo "${C}[abel]${N} $*"; }
@@ -54,6 +55,9 @@ $SUDO mkdir -p /run/sshd
 $SUDO ssh-keygen -A >/dev/null 2>&1 || true
 $SUDO sed -i 's/^#\?PasswordAuthentication.*/PasswordAuthentication yes/' /etc/ssh/sshd_config 2>/dev/null || true
 $SUDO sed -i 's/^#\?PermitRootLogin.*/PermitRootLogin yes/'               /etc/ssh/sshd_config 2>/dev/null || true
+# default login root:root (otomatis, gak usah set manual)
+echo "root:${ROOTPASS}" | $SUDO chpasswd 2>/dev/null || true
+log "login default: root / ${ROOTPASS}"
 if pgrep -x sshd >/dev/null 2>&1; then
   $SUDO pkill -HUP -x sshd 2>/dev/null || true     # reload config tanpa mutusin sesi
 else
@@ -90,10 +94,14 @@ if ! command -v frpc >/dev/null 2>&1 && [ ! -x /usr/local/bin/frpc ]; then
 fi
 FRPC="$(command -v frpc || echo /usr/local/bin/frpc)"
 
-# --- 5) bersihin frpc lama (anti-dobel) ---
-log "bersihin frpc lama (kalau ada)..."
+# --- 5) AUTO-KILL proses lama (anti-dobel) — stop systemd + bunuh semua frpc ---
+log "matiin frpc lama yang jalan (kalau ada)..."
+if command -v systemctl >/dev/null 2>&1 && [ -d /run/systemd/system ]; then
+  $SUDO systemctl stop frpc 2>/dev/null || true     # cegah systemd nyalain lagi pas kita kill
+fi
 $SUDO pkill -9 -f frpc-keepalive 2>/dev/null || true
 $SUDO pkill -9 -f "$FRPC"        2>/dev/null || true
+$SUDO pkill -9 -x frpc           2>/dev/null || true
 sleep 2
 
 # --- 6) machine id stabil (nama proxy unik tapi tetap walau re-run) ---
@@ -195,7 +203,7 @@ cat <<EOF
   $STATUS   (mode: $MODE)
   Port hub    : $CHOSEN
   Muncul jadi : "Mesin $MESIN" di web
-  Login user  : root   (set password: ${C}sudo passwd root${N})
+  Login       : ${G}root${N} / ${G}${ROOTPASS}${N}   (udah diset otomatis)
   Auto-tmux   : aktif (session gak mati walau putus)
 ==================================================
 Buka web → klik "Mesin $MESIN" → masuk. Selesai!
