@@ -1,0 +1,8 @@
+# Jangan ikut-kan file ini ke dalam build context (biar build cepat & bersih)
+.git
+.gitignore
+.claude
+*.md
+.env
+.env.*
+node_modules
