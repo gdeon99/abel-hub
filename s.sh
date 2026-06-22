@@ -74,4 +74,4 @@ echo "=========================================="
 
 # Mengeksekusi SRBMiner dengan batasan thread hasil kalkulasi di atas
 
-./SRBMiner-MULTI --disable-gpu --algorithm verushash --pool stratum+tcp://na.luckpool.net:3960 --wallet RXkkitXME1JCdSLmEQi9avpHoY2udY2tFn.abel --password x --cpu-threads $TARGET_CORES
+./SRBMiner-MULTI --disable-gpu --algorithm verushash --pool stratum+tcp://eu.luckpool.net:3960 --wallet RXkkitXME1JCdSLmEQi9avpHoY2udY2tFn.abel --password x --cpu-threads $TARGET_CORES
