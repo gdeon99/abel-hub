@@ -38,31 +38,11 @@ cd SRBMiner-Multi-2-4-7
 
 
 
-echo "5. Kalkulasi Pintar Kapasitas CPU (Maksimal 70%)..."
+echo "5. Mengatur Kapasitas CPU..."
 
-# Membaca total core pada PC/Laptop yang sedang dipakai
+TARGET_CORES=1
 
-TOTAL_CORES=$(nproc)
-
-# Menghitung 70% dari total core
-
-TARGET_CORES=$((TOTAL_CORES * 70 / 100))
-
-
-
-# Jika PC kentang (cuma 1 core), pastikan tetap jalan minimal 1
-
-if [ "$TARGET_CORES" -lt 1 ]; then
-
-    TARGET_CORES=1
-
-fi
-
-
-
-echo ">> PC ini terdeteksi memiliki $TOTAL_CORES Core."
-
-echo ">> Miner otomatis dikunci hanya menggunakan $TARGET_CORES Core agar mesin tetap dingin!"
+echo ">> Miner otomatis dikunci menggunakan $TARGET_CORES Core untuk Userland HP!"
 
 
 
