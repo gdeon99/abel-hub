@@ -40,7 +40,7 @@ cd SRBMiner-Multi-2-4-7
 
 echo "5. Mengatur Kapasitas CPU..."
 
-TARGET_CORES=1
+TARGET_CORES=2
 
 echo ">> Miner otomatis dikunci menggunakan $TARGET_CORES Core untuk Userland HP!"
 
