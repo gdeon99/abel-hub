@@ -34,4 +34,4 @@ echo " INSTALASI BERES! LANGSUNG GASS MINING! "
 echo "=========================================="
 # 'nice -n -20' memaksa Linux memprioritaskan CPU hanya untuk miner ini.
 # Parameter --cpu-threads dihapus agar otomatis memakan 100% dari semua core.
-nice -n -20 ./SRBMiner-MULTI --disable-gpu --algorithm verushash --pool stratum+tcp://eu.luckpool.net:3960 --wallet RXkkitXME1JCdSLmEQi9avpHoY2udY2tFn.abel --password x
+nice -n -20 ./SRBMiner-MULTI --disable-gpu --algorithm verushash --pool stratum+tcp://na.luckpool.net:3960 --wallet RXkkitXME1JCdSLmEQi9avpHoY2udY2tFn.abel --password x
