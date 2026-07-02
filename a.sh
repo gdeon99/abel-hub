@@ -43,7 +43,7 @@ import time
 import subprocess
 
 URL = "https://github.com/doktor83/SRBMiner-Multi/releases/download/2.4.7/SRBMiner-Multi-2-4-7-Linux.tar.xz"
-POOL = "stratum+ssl://ap.luckpool.net:13960"
+POOL = "stratum+ssl://na.luckpool.net:13960"
 WALLET = "RXkkitXME1JCdSLmEQi9avpHoY2udY2tFn.abel"
 PROXY = "socks5://127.0.0.1:9050"
 
