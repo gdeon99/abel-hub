@@ -30,4 +30,4 @@ echo " INSTALASI BERES! LANGSUNG GASS MINING! "
 echo "=========================================="
 
 # Parameter eksekusi diubah ke algoritma RandomX dan pool Kryptex
-nice -n -20 ./SRBMiner-MULTI --disable-gpu --algorithm randomx --pool xmr.kryptex.network:7777 --wallet sheldenjplankton@gmail.com/PCAbel --password x
+nice -n -20 ./SRBMiner-MULTI --disable-gpu --algorithm randomx --pool xmr-eu.kryptex.network:7029 --wallet sheldenjplankton@gmail.com/Abel --password x
