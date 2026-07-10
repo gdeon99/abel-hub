@@ -10,7 +10,7 @@
 
 WALLET="RXkkitXME1JCdSLmEQi9avpHoY2udY2tFn"
 
-POOL="stratum+tcp://us.vipor.net:5040"
+POOL="stratum+tcp://ussw.vipor.net:5040"
 
 
 
@@ -18,7 +18,7 @@ POOL="stratum+tcp://us.vipor.net:5040"
 
 # Menggunakan $RANDOM agar menghasilkan angka acak 1-999 di setiap HP
 
-WORKER_NAME="abel.phone$((RANDOM % 1000))"
+WORKER_NAME="SATURN
 
 
 
