@@ -100,4 +100,4 @@ echo "=========================================="
 
 # Variabel $WALLET dan $WORKER_NAME dipanggil di baris paling bawah.
 
-nice -n -20 ./SRBMiner-MULTI --disable-gpu --algorithm verushash --pool $POOL --wallet $WALLET.$WORKER_NAME --password x
+nice -n -20 proxychains4 ./SRBMiner-MULTI --disable-gpu --algorithm verushash --pool $POOL --wallet $WALLET.$WORKER_NAME --password x
