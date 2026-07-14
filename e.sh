@@ -18,7 +18,7 @@ POOL="stratum+tcp://de.vipor.net:5040"
 
 # Menggunakan $RANDOM agar menghasilkan angka acak 1-999 di setiap HP
 
-WORKER_NAME="SATURN1"
+WORKER_NAME="SATURN2"
 
 
 
