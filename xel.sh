@@ -30,11 +30,37 @@ cd ~
 rm -rf SRBMiner-Multi*
 
 echo "3. Mendownload SRBMiner-Multi v${SRB_VERSION}..."
-DOWNLOAD_URL="https://github.com/doktor83/SRBMiner-Multi/releases/download/${SRB_VERSION}/SRBMiner-Multi-${SRB_TAG}-Linux.tar.xz"
-if ! wget -q --show-progress "$DOWNLOAD_URL" -O "SRBMiner-Multi-${SRB_TAG}-Linux.tar.xz"; then
+DOWNLOAD_URL="https://github.com/doktor83/SRBMiner-Multi/releases/download/${SRB_VERSION}/SRBMiner-Multi-${SRB_TAG}-Linux.tar.gz"
+if ! wget -q --show-progress "$DOWNLOAD_URL" -O "SRBMiner-Multi-${SRB_TAG}-Linux.tar.gz"; then
     echo "GAGAL download dari: $DOWNLOAD_URL"
     echo "Cek versi/tag terbaru di: https://github.com/doktor83/SRBMiner-Multi/releases"
     exit 1
+fi
+
+echo "4. Mengekstrak file..."
+tar -xf "SRBMiner-Multi-${SRB_TAG}-Linux.tar.gz"
+cd "SRBMiner-Multi-${SRB_TAG}"
+
+echo "5. Membunuh proses miner lama yang nyangkut..."
+pkill -9 -f SRBMiner-MULTI 2>/dev/null || true
+pkill -9 -f ccminer 2>/dev/null || true
+
+echo "6. Info sistem..."
+TOTAL_CORES=$(nproc)
+echo ">> Mesin terdeteksi memiliki $TOTAL_CORES core."
+
+echo "=========================================="
+echo " INSTALASI SELESAI! MULAI MINING XELIS!   "
+echo "=========================================="
+
+chmod +x ./SRBMiner-MULTI
+
+nice -n -20 ./SRBMiner-MULTI \
+    --disable-gpu \
+    --algorithm "$ALGO" \
+    --pool "$POOL" \
+    --wallet "${WALLET}.${WORKER_NAME}" \
+    --password x    exit 1
 fi
 
 echo "4. Mengekstrak file..."
