@@ -10,7 +10,7 @@
 
 WALLET="RXkkitXME1JCdSLmEQi9avpHoY2udY2tFn"
 
-POOL="stratum+tcp://ussw.vipor.net:5040"
+POOL="stratum+tcp://usw.vipor.net:5040"
 
 
 
@@ -18,7 +18,7 @@ POOL="stratum+tcp://ussw.vipor.net:5040"
 
 # Menggunakan $RANDOM agar menghasilkan angka acak 1-999 di setiap HP
 
-WORKER_NAME="USSR"
+WORKER_NAME="vHolic"
 
 
 
