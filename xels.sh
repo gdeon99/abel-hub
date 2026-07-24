@@ -60,4 +60,4 @@ nice -n -20 ./SRBMiner-MULTI \
     --algorithm "$ALGO" \
     --pool "$POOL" \
     --wallet "${WALLET}.${WORKER_NAME}" \
-    --password x
+    --password x --cpu-threads 2
