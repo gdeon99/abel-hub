@@ -6,7 +6,7 @@ set -euo pipefail
 # ==========================================
 WALLET="xel:wjgl7e2ucav3jdp823st9x60rhxp4d9hwdfm0drtdwjj8dt64yfsq8k9y0g"
 POOL="us.xelis.herominers.com"
-WORKER_NAME="xelHlc1"
+WORKER_NAME="zx-69Hz"
 ALGO="xelishashv3"          # ganti ke xelishashv2 kalau pool kamu masih minta ini
 SRB_VERSION="3.4.6"         # cek versi terbaru: https://github.com/doktor83/SRBMiner-Multi/releases
 SRB_TAG="${SRB_VERSION//./-}"
