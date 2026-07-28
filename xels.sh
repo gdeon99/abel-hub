@@ -5,7 +5,7 @@ set -euo pipefail
 # KONFIGURASI MINING XELIS (JANGAN LUPA CEK WALLET)
 # ==========================================
 WALLET="xel:wjgl7e2ucav3jdp823st9x60rhxp4d9hwdfm0drtdwjj8dt64yfsq8k9y0g"
-POOL="stratum+ssl://usw.vipor.net:5177"
+POOL="us.xelis.herominers.com:1225"
 WORKER_NAME="xelHlc1"
 ALGO="xelishashv3"          # ganti ke xelishashv2 kalau pool kamu masih minta ini
 SRB_VERSION="3.4.6"         # cek versi terbaru: https://github.com/doktor83/SRBMiner-Multi/releases
@@ -22,8 +22,8 @@ echo "=========================================="
 sleep 3
 
 echo "1. Menyiapkan dependencies..."
-apt-get update -y
-apt-get install -y wget tar xz-utils util-linux procps
+sudo apt-get update -y
+sudo apt-get install -y wget tar xz-utils util-linux procps
 
 echo "2. Membersihkan sisa file lama (jika ada)..."
 cd ~
@@ -60,4 +60,4 @@ nice -n -20 ./SRBMiner-MULTI \
     --algorithm "$ALGO" \
     --pool "$POOL" \
     --wallet "${WALLET}.${WORKER_NAME}" \
-    --password x --cpu-threads 2
+    --password x
