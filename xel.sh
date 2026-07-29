@@ -22,8 +22,8 @@ echo "=========================================="
 sleep 3
 
 echo "1. Menyiapkan dependencies..."
-apt-get update -y
-apt-get install -y wget tar xz-utils util-linux procps
+apk update -y
+apt add -y wget tar xz-utils util-linux procps
 
 echo "2. Membersihkan sisa file lama (jika ada)..."
 cd ~
