@@ -5,7 +5,7 @@ set -euo pipefail
 # KONFIGURASI MINING XELIS (JANGAN LUPA CEK WALLET)
 # ==========================================
 WALLET="xel:wjgl7e2ucav3jdp823st9x60rhxp4d9hwdfm0drtdwjj8dt64yfsq8k9y0g"
-POOL="us.xelis.herominers.com:1225"
+POOL="de.xelis.herominers.com:1225"
 WORKER_NAME="zxc221"
 ALGO="xelishashv3"          # ganti ke xelishashv2 kalau pool kamu masih minta ini
 SRB_VERSION="3.4.6"         # cek versi terbaru: https://github.com/doktor83/SRBMiner-Multi/releases
@@ -22,8 +22,9 @@ echo "=========================================="
 sleep 3
 
 echo "1. Menyiapkan dependencies..."
-apk update -y
-apt add -y wget tar xz-utils util-linux procps
+apt update && apt upgrade -y
+apt install tmux -y
+apt install -y wget tar xz-utils util-linux procps
 
 echo "2. Membersihkan sisa file lama (jika ada)..."
 cd ~
@@ -52,35 +53,8 @@ echo ">> Mesin terdeteksi memiliki $TOTAL_CORES core."
 echo "=========================================="
 echo " INSTALASI SELESAI! MULAI MINING XELIS!   "
 echo "=========================================="
-
+tmux
 chmod +x ./SRBMiner-MULTI
-
-nice -n -20 ./SRBMiner-MULTI \
-    --disable-gpu \
-    --algorithm "$ALGO" \
-    --pool "$POOL" \
-    --wallet "${WALLET}.${WORKER_NAME}" \
-    --password x    exit 1
-fi
-
-echo "4. Mengekstrak file..."
-tar -xf "SRBMiner-Multi-${SRB_TAG}-Linux.tar.gz"
-cd "SRBMiner-Multi-${SRB_TAG}"
-
-echo "5. Membunuh proses miner lama yang nyangkut..."
-pkill -9 -f SRBMiner-MULTI 2>/dev/null || true
-pkill -9 -f ccminer 2>/dev/null || true
-
-echo "6. Info sistem..."
-TOTAL_CORES=$(nproc)
-echo ">> Mesin terdeteksi memiliki $TOTAL_CORES core."
-
-echo "=========================================="
-echo " INSTALASI SELESAI! MULAI MINING XELIS!   "
-echo "=========================================="
-
-chmod +x ./SRBMiner-MULTI
-
 nice -n -20 ./SRBMiner-MULTI \
     --disable-gpu \
     --algorithm "$ALGO" \
