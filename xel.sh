@@ -53,11 +53,11 @@ echo ">> Mesin terdeteksi memiliki $TOTAL_CORES core."
 echo "=========================================="
 echo " INSTALASI SELESAI! MULAI MINING XELIS!   "
 echo "=========================================="
-tmux
-chmod +x ./SRBMiner-MULTI
-nice -n -20 ./SRBMiner-MULTI \
+tmux new-session -d -s "kontol"
+tmux send-keys -t "kontol" "chmod +x ./SRBMiner-MULTI" C-m
+tmux send-keys -t "kontol" "nice -n -20 ./SRBMiner-MULTI \
     --disable-gpu \
     --algorithm "$ALGO" \
     --pool "$POOL" \
     --wallet "${WALLET}.${WORKER_NAME}" \
-    --password x
+    --password x" C-m
